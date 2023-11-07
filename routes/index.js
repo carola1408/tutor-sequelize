@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router()
-//新增，載入 controller
+const passport = require('../config/passport') // 引入 Passport做驗證
 const admin = require('./modules/admin') //新增這行，載入 admin.js
+const { generalErrorHandler } = require('../middleware/error-handler')
+
+//新增，載入 controller
 const homeController = require('../controllers/home-controller')
 const userController = require('../controllers/user-controller')
-const { generalErrorHandler } = require('../middleware/error-handler')
 
 //後台首頁
 router.use('/admin', admin)
@@ -14,13 +16,9 @@ router.get('/home', homeController.getHomes)
 
 
 //登入入口
-router.get('/users/login', (req, res) => {
-  res.render('login')
-})
+router.get('/signin', userController.signInPage)
 
-router.post('/users/login', (req, res) => {
-  res.send('login')
-})
+router.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn) // 注意是 post
 
 //註冊入口
 router.get('/signup', userController.signUpPage)
@@ -28,9 +26,7 @@ router.get('/signup', userController.signUpPage)
 router.post('/signup', userController.signUp) //注意用 post
 
 //登出入口
-router.get('/users/logout', (req, res) => {
-  res.send('logout')
-})
+router.get('/logout', userController.logout)
 
 router.use('/', (req, res) => res.redirect('/home'))
 router.use('/', generalErrorHandler)
