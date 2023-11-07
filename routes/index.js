@@ -2,8 +2,13 @@ const express = require('express')
 const router = express.Router()
 //新增，載入 controller
 const homeController = require('../controllers/home-controller')
+const admin = require('./modules/admin') //新增這行，載入 admin.js
+//後台
+router.use('/admin', admin)
+
 //首頁
 router.get('/home', homeController.getHomes)
+
 
 //登入入口
 router.get('/users/login', (req, res) => {
