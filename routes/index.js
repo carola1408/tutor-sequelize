@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
 //新增，載入 controller
-const homeController = require('../controllers/home-controller')
 const admin = require('./modules/admin') //新增這行，載入 admin.js
-//後台
+const homeController = require('../controllers/home-controller')
+const userController = require('../controllers/user-controller')
+
+//後台首頁
 router.use('/admin', admin)
 
-//首頁
+//前台首頁
 router.get('/home', homeController.getHomes)
 
 
@@ -20,13 +22,9 @@ router.post('/users/login', (req, res) => {
 })
 
 //註冊入口
-router.get('/users/register', (req, res) => {
-  res.render('register')
-})
+router.get('/signup', userController.signUpPage)
 
-router.post('/users/register', (req, res) => {
-  res.send('register')
-})
+router.post('/signup', userController.signUp) //注意用 post
 
 //登出入口
 router.get('/users/logout', (req, res) => {

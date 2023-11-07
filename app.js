@@ -12,6 +12,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 
 // 設定使用 Handlebars 做為樣板引擎
 app.set('view engine', 'hbs')
+//使用 body-parser
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
