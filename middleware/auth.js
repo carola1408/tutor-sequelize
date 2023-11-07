@@ -4,6 +4,7 @@ const authenticated = (req, res, next) => {
   if (ensureAuthenticated(req)) {
     return next()
   }
+  req.flash('warning_msg', '請先登入才能使用網站！'); // 設定警告訊息
   res.redirect('/signin')
 }
 const authenticatedAdmin = (req, res, next) => {
