@@ -2,6 +2,9 @@
 const express = require('express')
 const exphbs = require('express-handlebars') // 引入 express-handlebars
 const flash = require('connect-flash') //自訂訊息
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const session = require('express-session') //使用 session
 const passport = require('./config/passport') // 引入Passport
 const { getUser } = require('./helpers/auth-helpers') //引入自定義的 auth-helpers
@@ -9,7 +12,7 @@ const methodOverride = require('method-override')
 const routes = require('./routes')
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 const SESSION_SECRET = 'secret'
 // 註冊 Handlebars 樣板引擎，並指定副檔名為 .hbs
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
@@ -19,7 +22,7 @@ app.set('view engine', 'hbs')
 //使用 body-parser
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-app.use(session({ secret: SESSION_SECRET, resave: false, saveUninitialized: false }))
+app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }))
 app.use(passport.initialize()) // 增加這行，初始化 Passport
 app.use(passport.session()) // 增加這行，啟動 session 功能
 app.use(flash()) // 掛載套件
