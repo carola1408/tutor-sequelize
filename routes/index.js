@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('../config/passport') // 引入 Passport做驗證
+const { authenticated } = require('../middleware/auth')  //引入 auth.js
 const admin = require('./modules/admin') //新增這行，載入 admin.js
 const { generalErrorHandler } = require('../middleware/error-handler')
 
@@ -12,7 +13,7 @@ const userController = require('../controllers/user-controller')
 router.use('/admin', admin)
 
 //前台首頁
-router.get('/home', homeController.getHomes)
+router.get('/home', authenticated, homeController.getHomes)
 
 
 //登入入口
