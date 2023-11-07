@@ -4,6 +4,7 @@ const router = express.Router()
 const admin = require('./modules/admin') //新增這行，載入 admin.js
 const homeController = require('../controllers/home-controller')
 const userController = require('../controllers/user-controller')
+const { generalErrorHandler } = require('../middleware/error-handler')
 
 //後台首頁
 router.use('/admin', admin)
@@ -32,4 +33,5 @@ router.get('/users/logout', (req, res) => {
 })
 
 router.use('/', (req, res) => res.redirect('/home'))
+router.use('/', generalErrorHandler)
 module.exports = router
