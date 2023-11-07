@@ -1,6 +1,19 @@
-'use strict';
+'use strict'
+const {
+  Model
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  class User extends Model {
+    static associate(models) {
+      // define association here
+      User.hasOne(models.Teacher, { foreignKey: 'userId' })
+      User.hasMany(models.Reservation, { foreignKey: 'userId' })
+      User.hasMany(models.Opinion, { foreignKey: 'userId' })
+      User.hasMany(models.History, { foreignKey: 'userId' })
+      User.hasMany(models.Schedule, { foreignKey: 'userId' })
+    }
+  };
+  User.init({
     account: DataTypes.STRING,
     name: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -8,12 +21,13 @@ module.exports = (sequelize, DataTypes) => {
     avatar: DataTypes.STRING,
     introduction: DataTypes.TEXT,
     role: DataTypes.STRING,
-    learning_hours: DataTypes.TIME
+    learning_hours: DataTypes.TIME,
+    isAdmin: DataTypes.BOOLEAN
   }, {
-    underscored: true,
-  });
-  User.associate = function (models) {
-    // associations can be defined here
-  };
-  return User;
-};
+    sequelize,
+    modelName: 'User',
+    tableName: 'Users', // 新增這裡
+    underscored: true
+  })
+  return User
+}

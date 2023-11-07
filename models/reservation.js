@@ -1,13 +1,25 @@
-'use strict';
+
+'use strict'
+const {
+  Model
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  const Reservation = sequelize.define('Reservation', {
+  class Reservation extends Model {
+    static associate(models) {
+      // define association here
+      Reservation.belongsTo(models.User)
+      Reservation.belongsTo(models.Teacher)
+
+    }
+  };
+  Reservation.init({
     reservationTime: DataTypes.TIME,
     success: DataTypes.BOOLEAN
   }, {
-    underscored: true,
-  });
-  Reservation.associate = function(models) {
-    // associations can be defined here
-  };
-  return Reservation;
-};
+    sequelize,
+    modelName: 'Reservation',
+    tableName: 'Reservations', // 新增這裡
+    underscored: true
+  })
+  return Reservation
+}

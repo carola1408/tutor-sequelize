@@ -1,13 +1,24 @@
-'use strict';
+'use strict'
+const {
+  Model
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  const Opinion = sequelize.define('Opinion', {
+  class Opinion extends Model {
+
+    static associate(models) {
+      // define association here
+      Opinion.belongsTo(models.User)
+      Opinion.belongsTo(models.Teacher)
+    }
+  };
+  Opinion.init({
     comment: DataTypes.TEXT,
     rating: DataTypes.STRING
   }, {
-    underscored: true,
-  });
-  Opinion.associate = function(models) {
-    // associations can be defined here
-  };
-  return Opinion;
-};
+    sequelize,
+    modelName: 'Opinion',
+    tableName: 'Opinions', // 新增這裡
+    underscored: true
+  })
+  return Opinion
+}

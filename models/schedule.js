@@ -1,16 +1,29 @@
-'use strict';
+'use strict'
+const {
+  Model
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  const Schedule = sequelize.define('Schedule', {
-    startTime: DataTypes.TIME,
-    endTime: DataTypes.TIME,
-    dayOfWeek: DataTypes.DATE,
-    duration: DataTypes.TIME,
-    availableTime: DataTypes.BOOLEAN
-  }, {
-    underscored: true,
-  });
-  Schedule.associate = function(models) {
-    // associations can be defined here
+  class Schedule extends Model {
+    static associate(models) {
+      // define association here
+      Schedule.belongsTo(models.User)
+      Schedule.belongsTo(models.Teacher)
+    }
   };
-  return Schedule;
-};
+  Schedule.init({
+    account: DataTypes.STRING,
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    avatar: DataTypes.STRING,
+    introduction: DataTypes.TEXT,
+    role: DataTypes.BOOLEAN,
+    learningHours: DataTypes.TIME
+  }, {
+    sequelize,
+    modelName: 'Schedule',
+    tableName: 'Schedules', // 新增這裡
+    underscored: true
+  })
+  return Schedule
+}
