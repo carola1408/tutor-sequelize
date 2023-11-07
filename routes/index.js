@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
+//新增，載入 controller
+const homeController = require('../controllers/home-controller')
 //首頁
-router.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+router.get('/home', homeController.getHomes)
 
 //登入入口
 router.get('/users/login', (req, res) => {
@@ -28,4 +28,5 @@ router.get('/users/logout', (req, res) => {
   res.send('logout')
 })
 
+router.use('/', (req, res) => res.redirect('/home'))
 module.exports = router
