@@ -7,5 +7,5 @@ const { authenticatedAdmin } = require('../../middleware/auth')  //引入 auth.j
 // admin home
 router.get('/home', authenticatedAdmin, adminController.getHome)
 // admin users
-router.use('/', (req, res) => res.redirect('/admin/home'))
+router.get('/', (req, res) => res.redirect('/admin/home'))
 module.exports = router
