@@ -32,8 +32,8 @@
 // }
 // module.exports = adminController
 const adminController = {
-  getRestaurants: (req, res) => {
-    return res.render('admin/home')
+  getTutors: (req, res) => {
+    return res.render('admin/tutors')
   }
 }
 module.exports = adminController
