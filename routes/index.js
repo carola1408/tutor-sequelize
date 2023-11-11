@@ -13,8 +13,7 @@ router.use('/auth', auth)
 //後台首頁
 router.use('/admin', admin)
 
-//前台首頁
-router.get('/tutors', authenticated, tutorController.getTutors)
+
 
 
 //登入入口
@@ -29,6 +28,9 @@ router.post('/signup', userController.signUp) //注意用 post
 
 //登出入口
 router.get('/logout', userController.logout)
+
+//前台首頁
+router.get('/tutors', authenticated, tutorController.getTutors)
 
 router.use('/', (req, res) => res.redirect('/tutors'))
 router.use('/', generalErrorHandler)

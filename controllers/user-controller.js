@@ -22,7 +22,7 @@ const userController = {
       }))
       .then(() => {
         req.flash('success_messages', '成功註冊學生帳號！') //並顯示成功訊息
-        res.redirect('/home')
+        res.redirect('/signin')
       })
       .catch(err => next(err))
   },

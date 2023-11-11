@@ -13,7 +13,8 @@ const routes = require('./routes')
 
 const app = express()
 const PORT = process.env.PORT
-const SESSION_SECRET = 'secret'
+
+
 // 註冊 Handlebars 樣板引擎，並指定副檔名為 .hbs
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 
