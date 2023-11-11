@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   History.init({
-    comment: DataTypes.TEXT,
-    rating: DataTypes.STRING
+    courseName: DataTypes.STRING,
+    rating: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'History',
