@@ -13,18 +13,15 @@ router.use('/auth', auth)
 //後台首頁
 router.use('/admin', admin)
 
+//註冊入口
+router.get('/signup', userController.signUpPage)
 
-
+router.post('/signup', userController.signUp) //注意用 post
 
 //登入入口
 router.get('/signin', userController.signInPage)
 
 router.post('/signin', passport.authenticate('local', { failureRedirect: '/signin', failureFlash: true }), userController.signIn) // 注意是 post
-
-//註冊入口
-router.get('/signup', userController.signUpPage)
-
-router.post('/signup', userController.signUp) //注意用 post
 
 //登出入口
 router.get('/logout', userController.logout)
