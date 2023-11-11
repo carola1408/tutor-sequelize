@@ -7,14 +7,14 @@ const admin = require('./modules/admin') //新增這行，載入 admin.js
 const { generalErrorHandler } = require('../middleware/error-handler')
 
 //新增，載入 controller
-const homeController = require('../controllers/home-controller')
+const tutorController = require('../controllers/tutor-controller')
 const userController = require('../controllers/user-controller')
 router.use('/auth', auth)
 //後台首頁
 router.use('/admin', admin)
 
 //前台首頁
-router.get('/home', authenticated, homeController.getHomes)
+router.get('/tutors', authenticated, tutorController.getTutors)
 
 
 //登入入口
@@ -30,6 +30,6 @@ router.post('/signup', userController.signUp) //注意用 post
 //登出入口
 router.get('/logout', userController.logout)
 
-router.use('/', (req, res) => res.redirect('/home'))
+router.use('/', (req, res) => res.redirect('/tutors'))
 router.use('/', generalErrorHandler)
 module.exports = router
