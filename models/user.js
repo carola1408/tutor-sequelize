@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     avatar: DataTypes.STRING,
     introduction: DataTypes.TEXT,
     role: DataTypes.STRING,
-    learning_hours: DataTypes.TIME,
+    learning_hours: DataTypes.INTEGER,
     isAdmin: DataTypes.BOOLEAN
   }, {
     sequelize,
