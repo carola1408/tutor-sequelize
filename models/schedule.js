@@ -11,14 +11,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Schedule.init({
-    account: DataTypes.STRING,
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    avatar: DataTypes.STRING,
-    introduction: DataTypes.TEXT,
-    role: DataTypes.BOOLEAN,
-    learningHours: DataTypes.TIME
+    startTime: DataTypes.DATE,
+    endTime: DataTypes.DATE,
+    dayOfWeek: DataTypes.STRING,
+    duration: DataTypes.INTEGER,
+    availableTime: DataTypes.DATE,
+    studentName: DataTypes.STRING, // 新增的欄位
+    sessionLink: DataTypes.STRING, // 新增的欄位
   }, {
     sequelize,
     modelName: 'Schedule',
