@@ -1,5 +1,4 @@
 'use strict'
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     // 創建新的 histories 表
@@ -33,33 +32,3 @@ module.exports = {
     await queryInterface.dropTable('Histories');
   },
 }
-'use strict';
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Histories', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      comment: {
-        type: Sequelize.TEXT
-      },
-      rating: {
-        type: Sequelize.STRING
-      },
-      created_at: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Histories');
-  }
-};

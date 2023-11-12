@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     style: DataTypes.STRING,
     videoLink: DataTypes.STRING,
     comment: DataTypes.TEXT,
-    rating: DataTypes.INTEGER
+    rating: DataTypes.INTEGER,
+    role: DataTypes.STRING,
+    UserId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Teacher',

@@ -16,7 +16,7 @@ module.exports = {
     for (const userId of userIds) {
       for (let i = 0; i < teacherCount; i++) { // 每個使用者 10 位老師
         const teacher = {
-
+          role: 'teacher',
           introduction: faker.lorem.sentences(),
           style: faker.lorem.sentence(),
           videoLink: faker.internet.url(), // 隨機生成一個網址

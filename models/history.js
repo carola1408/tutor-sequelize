@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   History.init({
     courseName: DataTypes.STRING,
     rating: DataTypes.INTEGER,
+    type: DataTypes.STRING, // 記錄類型，例如 'review'、'course'
   }, {
     sequelize,
     modelName: 'History',
