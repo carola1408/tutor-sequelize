@@ -17,18 +17,18 @@ module.exports = {
       const existingTeacher = await queryInterface.sequelize.query(
         `SELECT id FROM Teachers WHERE id = ${teacherId}`,
         { type: Sequelize.QueryTypes.SELECT }
-      );
+      )
 
       if (!existingUser || existingUser.length === 0) {
         console.error(`User with id ${userId} does not exist.`);
-        return null; // 或者你可以採取其他適當的處理方式
+        return null // 或者你可以採取其他適當的處理方式
       } else if (!existingTeacher || existingTeacher.length === 0) {
-        console.error(`Teacher with id ${teacherId} does not exist.`);
-        return null; // 或者你可以採取其他適當的處理方式
+        console.error(`Teacher with id ${teacherId} does not exist.`)
+        return null // 或者你可以採取其他適當的處理方式
       } else {
         // 插入數據
-        const startDate = faker.date.between('2023-01-01', '2030-12-31');
-        const startTime = new Date(startDate).toISOString().slice(0, 19).replace('T', ' ');
+        const startDate = faker.date.between('2023-01-01', '2030-12-31')
+        const startTime = new Date(startDate).toISOString().slice(0, 19).replace('T', ' ')
 
         const scheduleData = {
           startTime,
@@ -45,13 +45,13 @@ module.exports = {
         };
 
         await queryInterface.bulkInsert('Schedules', [scheduleData]);
-        return scheduleData;
+        return scheduleData
       }
     })
 
     // 使用 Promise.all 等待所有插入操作完成，並過濾掉為 null 的值
-    const validSchedules = (await Promise.all(schedules)).filter(schedule => schedule !== null);
+    const validSchedules = (await Promise.all(schedules)).filter(schedule => schedule !== null)
 
-    console.log(`Inserted ${validSchedules.length} schedules successfully.`);
+    console.log(`Inserted ${validSchedules.length} schedules successfully.`)
   },
 }

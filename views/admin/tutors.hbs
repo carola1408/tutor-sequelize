@@ -1,4 +1,4 @@
-<header>
+{{!-- <header>
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark  px-4" style="padding: 8px 16px;
   background-color: rgb(155, 151, 151);">
     <div class="ml-auto ">
@@ -39,15 +39,15 @@
     <tr>
       <th scope="row">{{this.id}}</th>
       <td>{{this.name}}</td>
-      <td>{{#if this.isAdmin}}
-        admin
+      <td>{{#if this.isTeacher}}
+        teacher
         {{else}}
         user
         {{/if}}</td>
       <td>
         <form action="/admin/users/{{this.id}}?_method=PATCH" method="POST" style="display: inline;">
           <button type="submit" class="btn btn-link">
-            {{#if this.isAdmin}}
+            {{#if this.isTeacher}}
             set as user
             {{else}}
             set as admin
@@ -59,4 +59,4 @@
     {{/each}}
   </tbody>
 
-</table>
+</table> --}}

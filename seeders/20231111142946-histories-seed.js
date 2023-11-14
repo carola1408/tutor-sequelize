@@ -1,12 +1,11 @@
-'use strict';
-
+'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     // 種子資料為每個老師添加至少 2 個歷史評價
     const teachers = await queryInterface.sequelize.query(
       'SELECT id FROM Teachers WHERE role = "teacher";',
       { type: Sequelize.QueryTypes.SELECT }
-    );
+    )
 
     const histories = [];
 
@@ -29,16 +28,16 @@ module.exports = {
           updated_at: new Date(),
           teacherId: teacher.id,
         };
-        histories.push(history);
+        histories.push(history)
       }
     }));
 
     // 插入資料
-    await queryInterface.bulkInsert('Histories', histories, {});
+    await queryInterface.bulkInsert('Histories', histories, {})
   },
 
   down: async (queryInterface, Sequelize) => {
     // 清空 Histories 表的資料
-    await queryInterface.bulkDelete('Histories', null, {});
+    await queryInterface.bulkDelete('Histories', null, {})
   },
 }

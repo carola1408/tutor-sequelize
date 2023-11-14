@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     introduction: DataTypes.TEXT,
     role: DataTypes.STRING,
     learning_hours: DataTypes.INTEGER,
-    isAdmin: DataTypes.BOOLEAN
+    isAdmin: DataTypes.BOOLEAN,
+    isTeacher: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'User',
